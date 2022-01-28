@@ -1,0 +1,103 @@
+body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+} 
+.container {
+              display: flex;
+              flex-direction: column;
+              width: 100vw;
+              height: 100vh;
+              align-content: center;
+}
+
+.loginNavbar {
+              display: flex;
+              justify-content: flex-end;
+              width: 98%;
+}
+
+.login_txt , .signup_txt {
+              text-decoration: none;
+              color: black;
+              font-size: 15px;
+              padding-left: 10px;       
+}
+
+.main_logo {
+              display: flex;
+              justify-content: center;
+              align-content: center;
+              margin-bottom: 10px;
+}
+
+.pageNavbar {
+              display: flex;
+              justify-content: center;
+              padding-bottom: 20px;
+}
+
+.pageNavbar > a {
+              text-decoration: none;
+              color: black;
+              padding-left: 15px;
+              font-size: 17px;
+}
+
+.member_box {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+}
+
+.login_box {
+              width: 80%;
+              height: 450px;
+              display: flex;
+              justify-content: center;
+              padding: 20px;
+              border: 3px solid rgb(0,0,0,0.1);
+              box-sizing: border-box;
+}
+
+#login{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              border-right: 2.5px solid rgb(0,0,0,0.1);  
+              padding: 30px;
+}
+
+.find_id_pw {
+            display: flex;
+            
+}
+
+.find_id_pw > a {
+            text-decoration: none;
+            color: black;
+}
+
+.find_id_pw > a:first-child {
+            margin-right: 20px;
+}
+
+#nonMember{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              padding: 30px;
+}
+
+#login > input, #nonMember > input {
+              margin: 10px;
+              width: 300px;
+              height: 50px;
+              border: 1px solid black;
+              font-size: 20px;
+}
+
+

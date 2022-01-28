@@ -1,0 +1,169 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  /* overflow: hidden; */
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav_box {
+  width: 100vw;
+  display: flex;
+  border-bottom: 3px solid rgb(0, 0, 0, 0.3);
+}
+
+.main_logo {
+  text-decoration: none;
+  width: 10%;
+  display: flex;
+  padding-left: 20px;
+  padding-top: 18px;
+  margin-right: 20px;
+}
+
+.navbar {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  width: 75%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.addButton {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clothes {
+  width: 90px;
+  height: 30px;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+}
+
+.add {
+  width: 90px;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.main_box {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  width: 100vw;
+  height: 4vw;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid rgb(0, 0, 0, 0.3);
+}
+
+.item > p {
+  width: 90%;
+  padding-left: 30px;
+  font-size: 25px;
+  margin: 0;
+}
+
+.item > .change {
+  width: 10%;
+}
+
+.change > .modify,
+.delete {
+  font-size: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  height: 20%;
+  align-items: center;
+}
+
+.pagination > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 30px;
+  border: 2px solid black;
+  font-size: 20px;
+}
+
+.modalContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.modalBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 700px;
+  border: 3px solid black;
+  position: absolute;
+  background-color: seashell;
+}
+
+.modifySize {  /*수정버튼 누르면 현재 이미지를 보여줄 수 있을 만큼 모달창을 확대*/
+  width: 900px;
+}
+
+.modalBox > .content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalBox > label {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 400px;
+  height: 100px;
+}
+
+.modalBox > input {
+  width: 300px;
+}
+
+.modalBox > span {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,28 @@
+CREATE TABLE user
+(
+            id varchar(20) not null,
+            pw varchar(20) not null,
+            email varchar(50) not null,
+            phone int not null,
+            year int not null,
+            month int not null,
+            day int not null,
+            created_at datetime not null default now(),
+            primary key(id),
+)default character set = utf8
+engine = innoDB
+
+CREATE TABLE item
+(
+            itemname varchar(30) not null,
+            itemtype varchar(20) not null,
+            value int not null,
+            size varchar(20) not null,
+            imgname varchar(30) not null,
+            colors varchar(50) not null,
+            created_at datetime not null default now(),
+            primary key(itemname),
+)default character set = utf8
+engine = innoDB
+
+

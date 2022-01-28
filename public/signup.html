@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>signUp</title>
+            <link href="signup.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+            <div class="container">
+                        <a class="mainLogo" href="/"><img src="./img/main_logo.png"></a> 
+                        <div class="loginNavbar">
+                                    <a href="/login.html" class="loginTxt">로그인</a>
+                                    <a href="/signup.html" class="signUpTxt">회원가입</a> 
+                        </div>
+                        <div class="signUpBox">
+                                    <h1>회원가입</h1>
+                                    <form id="signUp" name="signUp" action="user/signup" method="post">
+                                                <div class="idBox">
+                                                            <input id="id" name="id" type="text" placeholder="아이디">
+                                                            <input id="duplicateBut" name="duplicateBut" type="button" value="아이디 중복검사">
+                                                </div>
+                                                <p class="checkid"></p>
+                                                <input id="pw" name="pw" type="text" placeholder="비밀번호">
+                                                <input id="checkPw" name="checkPw" type="text" placeholder="비밀번호 확인" >
+                                                <input id="email" name="email" type="text" placeholder="이메일"> 
+                                                <div class="birthdayBox">
+                                                            <select name="year" id="year">
+                                                                        <option value="">년도</option>
+                                                                        <option value="2003">2003</option>
+                                                                        <option value="2002">2002</option>
+                                                                        <option value="2001">2001</option>
+                                                                        <option value="2000">2000</option>
+                                                                        <option value="1999">1999</option>
+                                                                        <option value="1998">1998</option>
+                                                                        <option value="1997">1997</option>
+                                                                        <option value="1996">1996</option>
+                                                                        <option value="1995">1995</option>
+                                                                        <option value="1994">1994</option>
+                                                            </select>
+                                                            <select name="month" id="month">
+                                                                        <option value="">월</option>
+                                                                        <option value="1">1월</option>
+                                                                        <option value="2">2월</option>
+                                                                        <option value="3">3월</option>
+                                                                        <option value="4">4월</option>
+                                                                        <option value="5">5월</option>
+                                                                        <option value="6">6월</option>
+                                                                        <option value="7">7월</option>
+                                                                        <option value="8">8월</option>
+                                                                        <option value="9">9월</option>
+                                                                        <option value="10">10월</option>
+                                                                        <option value="11">11월</option>
+                                                                        <option value="12">12월</option>
+                                                            </select>
+                                                            <select name="day" id="day">
+                                                                        <option value="">일</option>
+                                                                        <option value="1">1일</option>
+                                                                        <option value="2">2일</option>
+                                                                        <option value="3">3일</option>
+                                                                        <option value="4">4일</option>
+                                                                        <option value="5">5일</option>
+                                                                        <option value="6">6일</option>
+                                                                        <option value="7">7일</option>
+                                                                        <option value="8">8일</option>
+                                                                        <option value="9">9일</option>
+                                                                        <option value="10">10일</option>
+                                                                        <option value="11">11일</option>
+                                                                        <option value="12">12일</option>
+                                                                        <option value="13">13일</option>
+                                                                        <option value="14">14일</option>
+                                                                        <option value="15">15일</option>
+                                                                        <option value="16">16일</option>
+                                                                        <option value="17">17일</option> 
+                                                                        <option value="18">18일</option>
+                                                                        <option value="19">19일</option>
+                                                                        <option value="20">20일</option>
+                                                                        <option value="21">21일</option>
+                                                                        <option value="22">22일</option>
+                                                                        <option value="23">23일</option>
+                                                                        <option value="24">24일</option>
+                                                                        <option value="25">25일</option>
+                                                                        <option value="26">26일</option>
+                                                                        <option value="27">27일</option>
+                                                                        <option value="28">28일</option>
+                                                                        <option value="29">29일</option>
+                                                                        <option value="30">30일</option>
+                                                                        <option value="31">31일</option>
+                                                            </select>
+                                                </div>
+                                                <input id="phone" name="phone" type="number" maxlength="11" value="01094291234">
+                                                <div class="ageBox">
+                                                            <input id="age" name="age" type="checkbox">
+                                                            <label for="age">14세 이상입니다.</label>
+                                                </div>            
+                                                <button id="sub" type="button">제출</button> 
+                                    </form>
+                        </div>
+            </div>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="/pw.js"></script>
+            <script src="/signup.js"></script>
+</body>
+</html>

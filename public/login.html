@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href="login.css" rel="stylesheet" type="text/css">
+    </link>
+</head>
+
+<body>
+    <div class="container">
+        <div class="loginNavbar">
+            <a href="login.html" class ="login_txt">로그인</a>
+            <a href="signup.html"class ="signup_txt">회원가입</a>
+        </div>
+        <a class="main_logo" href="/"><img src="./img/main_logo.png"></a>
+        <div class="pageNavbar">
+            <a href="#">onepiece</a>
+            <a href="#">top</a>
+            <a href="#">bottom</a>
+            <a href="#">homewear</a>
+            <a href="#">fitness</a>
+            <a href="#">underwear</a>
+        </div>
+
+        <div class="member_box">
+            <h1>로그인</h1>
+            <div class="login_box">
+                <form id="login" name="login" action="user/login" method="post">
+                    <h2>로그인</h2>
+                    <input name="id" id="id" type="text" placeholder="아이디">
+                    <input name="pw" id="pw" type="password" placeholder="비밀번호">
+                    <input name="store" id="store" type="submit" value="로그인">
+                    <div class="find_id_pw">
+                        <a href="find_id.html">아이디 찾기</a>
+                        <a href="find_pw.html"> 비밀번호 찾기</a>
+                    </div>
+                </form>
+                <from id="nonMember" action="user/nonMember" method="post">
+                    <h2>non-member</h2>
+                    <input name="orderingPerson" id="orderPerson" type="text" placeholder="주문자">
+                    <input name="orderNum" id="orderNum" type="number" placeholder="주문번호">
+                    <input name="store" id="store" type="submit" value="주문조회">
+                </from>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

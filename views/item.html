@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <link href="item.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav_box">
+            <a class="main_logo" href="list"><img src="/img/main_logo.png"></a>
+            <div class="navbar">
+                <button class="clothes" data-type="all"><a href="list?type=all">전체</a></button>
+                <button class="clothes" data-type="outer"><a href="list?type=outer">아우터</a></button>
+                <button class="clothes" data-type="onepiece"><a href="list?type=onepiece">원피스</a></button>
+                <button class="clothes" data-type="top"><a href="list?type=top">상의</a></button>
+                <button class="clothes" data-type="knit"><a href="list?type=knit">니트</a></button>
+                <button class="clothes" data-type="bottom"><a href="list?type=bottom">하의</a></button>
+                <button class="clothes" data-type="fitness"><a href="list?type=fitness">피트니스</a></button>
+                <button class="clothes" data-type="homewear"><a href="list?type=homewear">홈웨어</a></button>
+            </div>
+            <div class="addButton">
+                <button class="add"><a href="add">추가</a></button>
+            </div>
+        </div>
+
+        <div class="main_box">
+            {% for item in items %}
+            <div class="item item-{{item.itemNumber}}">
+                {{item.itemtype}} {{item.itemname}} {{item.value}} {{item.size}} {{item.colors}}
+                <div class="item_change">
+                    <button data-item-number="{{item.itemNumber}}" data-type="{{item.itemtype}}" class="modify"
+                        type="button">수정</button>
+                    <button data-item-number="{{item.itemNumber}}" data-type="{{item.itemtype}}" class="delete"
+                        type="button">삭제</button>
+                </div>
+            </div>
+            {% else %}
+            <div class="item">데이터가 없습니다.</div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {% if pagination.firstPageNoOnPageList - 1 > 0 %}
+            <button data-current-page-no="{{pagination.firstPageNoOnPageList - 1}}" data-type="{{type}}">&lt;</button>
+            {% endif %}
+
+            {% for i in range(pagination.firstPageNoOnPageList, pagination.lastPageNoOnPageList + 1) -%}
+            {% if pagination.currentPageNo == i %}
+            <button class="current">{{ i }}</button>
+            {% else %}
+            <button data-current-page-no="{{ i }}" data-type="{{type}}">{{ i }}</button>
+            {% endif %}
+            {%- endfor%}
+
+            {% if pagination.lastPageNoOnPageList + 1 <= pagination.totalPageCount %} <button
+                data-current-page-no="{{pagination.lastPageNoOnPageList + 1}}" data-type="{{type}}">&gt;</button>
+                {% endif %}
+        </div>
+    </div>
+
+    <div class="modalContainer hidden">
+        <div class="modalBox">
+            <div class="close">X</div>
+            <img class="thumbnail hidden" src="/{{item.imgFilePath}}/{{item.filename}}">
+            <form class="content" method="post" action="" enctype="multipart/form-data">
+                <input name="itemNumber" type="number">
+
+                <label for="itemtype">
+                    <span>타입</span>
+                    <input name="itemtype" type="text">
+                </label>
+
+                <label for="img">
+                    <span>이미지</span>
+                    <input name="img" type="file" accept="image/*">
+                </label>
+
+                <label for="itemName">
+                    <span>제품명</span>
+                    <input name="itemName" type="text">
+                </label>
+
+                <label for="value">
+                    <span>가격</span>
+                    <input name="value" type="number">
+                </label>
+
+                <label for="size">
+                    <span>사이즈</span>
+                    <input name="size" type="text">
+                </label>
+
+                <label for="color">
+                    <span>색깔</span>
+                    <input name="color" type="text">
+                </label>
+
+                <input type="button" class="submitBut" value="제출"></input>
+            </form>
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="item.js"></script>
+</body>
+
+</html>
