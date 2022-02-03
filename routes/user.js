@@ -9,12 +9,16 @@ const conn = {
             database: 'shoppingMall'
 }
 
+const connection = mysql.createConnection(conn);
+connection.connect();
+
 const router = express.Router();
 
 function validityPw(pw) {
+            console.log('pw',pw);
             const specialString = '~!@#$%^&*(){[]';
             const number = '0123456789';
-            const pwTxt = pw.value;
+            const pwTxt = pw;
             let specialStringCnt = 0;
             let numberCnt = 0;
 
@@ -41,8 +45,7 @@ function validityPw(pw) {
 }
 
 router.post('/login', (req, res, next) => {
-            const connection = mysql.createConnection(conn);
-            connection.connect();
+            const tag = 'post/login'
             const body = req.body;
             const id = body.id;
             const pw  = body.pw;
@@ -51,7 +54,7 @@ router.post('/login', (req, res, next) => {
 
             connection.query(sql,(err,result,fields) => {
                         if(err) {
-                                    console.log('login err',err.message);
+                                    console.error(tag,err.message);
                         }
                         console.log(result);
                         if(result) {
@@ -65,8 +68,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/signup',(req,res,next) => {
-            const connection = mysql.createConnection(conn);
-            connection.connect();
+            const tag = 'post/signup'
             const body = req.body;
             const id = body.id;
             const pw = body.pw;
@@ -92,7 +94,7 @@ router.post('/signup',(req,res,next) => {
             console.log('sql',sql);
             connection.query(sql, (err,result, fields) => {
                         if(err) {
-                                    console.log('signup err', err.message);
+                                    console.error(tag,err.message);
                         }
                         if(result) {
                                     res.redirect('/login.html');
@@ -101,14 +103,12 @@ router.post('/signup',(req,res,next) => {
 });
 
 router.get('/duplicateid/:id',(req,res,next) => {
-            //duplicateid
-            const connection = mysql.createConnection(conn);
-            connection.connect();
+            const tag = 'get/duplicateId'
             const id = req.params.id; //req.params.id
             const sql = `select id from shoppingMall.user where id = '${id}';`;
             connection.query(sql,(err,result,fields) => {
                         if(err) {
-                                    console.log('duplicateId err',err.message);
+                                    console.error(tag,err.message);
                         }
                         if(result.length === 0) {
                                     res.send('false');     
@@ -120,8 +120,7 @@ router.get('/duplicateid/:id',(req,res,next) => {
 });
 
 router.post('/findpw',(req,res,next) => {
-            const connection = mysql.createConnection(conn);
-            connection.connect();
+            const tag = 'post/findPw'
             const body = req.body;
             const id = body.id;
             const year = Number(body.year);
@@ -132,7 +131,7 @@ router.post('/findpw',(req,res,next) => {
             const sql = `select pw from shoppingMall.user where id = '${id}' and year=${year} and month=${month} and day=${day} and email ='${email}' and phone='${phone}';`;
             connection.query(sql,(err,result,fields) => {
                         if(err) {
-                                    console.log('findPw err',err.message);
+                                    console.error(tag,err.message);
                         }
                         if(result.length === 0) {
                                     res.json(false);
@@ -143,8 +142,7 @@ router.post('/findpw',(req,res,next) => {
 });
 
 router.post('/findid',(req,res,next) => {
-            const connection = mysql.createConnection(conn);
-            connection.connect();
+            const tag = 'post/findId'
             const body = req.body;
             const year = Number(body.year);
             const month = Number(body.month);
@@ -153,7 +151,7 @@ router.post('/findid',(req,res,next) => {
             const sql = `select id from shoppingMall.user where year=${year} and month=${month} and day=${day} and phone='${phone}';`;
             connection.query(sql,(err,result,fields) => {
                         if(err) {
-                                    console.log('findId err',err.message);
+                                    console.error(tag,err.message);
                         }
                         if(result.length === 0) {
                                     res.json(false);

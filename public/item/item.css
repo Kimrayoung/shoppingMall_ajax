@@ -89,12 +89,12 @@ a {
   margin: 0;
 }
 
-.item > .change {
+.item > .item_change {
+  margin-left: 20px;
   width: 10%;
 }
 
-.change > .modify,
-.delete {
+.modify, .delete {
   font-size: 20px;
 }
 
@@ -135,7 +135,7 @@ a {
   width: 500px;
   height: 700px;
   border: 3px solid black;
-  position: absolute;
+  position: relative;
   background-color: seashell;
 }
 
@@ -143,25 +143,39 @@ a {
   width: 900px;
 }
 
+.modalBox > .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .modalBox > .content {
   display: flex;
   flex-direction: column;
 }
 
-.modalBox > label {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 400px;
-  height: 100px;
+.content> label {
+  margin-bottom: 20px;
 }
 
-.modalBox > input {
+.modalContainer form> label > input {
   width: 300px;
+  height: 30px;
+  font-size: 20px;
 }
 
-.modalBox > span {
+.modalContainer form > label > span {
   width: 100px;
+  display: inline-block;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.modalContainer form > .submitBut {
+  width: 300px;
+  height: 30px;
+  font-size: 20px;
+  margin-left: 116px;
 }
 
 .hidden {

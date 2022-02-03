@@ -24,7 +24,7 @@
                 <button class="clothes" data-type="homewear"><a href="list?type=homewear">홈웨어</a></button>
             </div>
             <div class="addButton">
-                <button class="add"><a href="add">추가</a></button>
+                <button class="add">추가</button>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
             <div class="close">X</div>
             <img class="thumbnail hidden" src="/{{item.imgFilePath}}/{{item.filename}}">
             <form class="content" method="post" action="" enctype="multipart/form-data">
-                <input name="itemNumber" type="number">
+                <input name="itemNumber" type="hidden">
 
                 <label for="itemtype">
                     <span>타입</span>
@@ -77,7 +77,7 @@
 
                 <label for="img">
                     <span>이미지</span>
-                    <input name="img" type="file" accept="image/*">
+                    <input id="uploadImg" name="img" type="file" accept="image/*">
                 </label>
 
                 <label for="itemName">
@@ -100,7 +100,7 @@
                     <input name="color" type="text">
                 </label>
 
-                <input type="button" class="submitBut" value="제출"></input>
+                <input type="button" class="submitBut" value="제출">
             </form>
         </div>
     </div>

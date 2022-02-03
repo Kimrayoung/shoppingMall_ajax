@@ -1,9 +1,7 @@
-const { default: axios } = require("axios");
-
 const navbar = document.querySelector('.navbar');
 const mainBox = document.querySelector('.main_box');
 const pagination = document.querySelector('.pagination');
-const addBut = document.querySelector('.addButton');
+const addBut = document.querySelector('.add');
 const modalContainer = document.querySelector('.modalContainer');
 const modalBox = document.querySelector('.modalBox');
 const content = modalBox.querySelector('.content');
@@ -42,6 +40,8 @@ async function list(type = 'all', currentPageNo = 1) {
         'Accept': 'application/json'
       }
   });
+
+  console.log('result',result)
 
   listBox.currentPageNo = currentPageNo;
   listBox.type = type;
@@ -90,24 +90,25 @@ async function prepareModify(itemNumber) {  //dataset으로 type이랑 itemNumbe
   
   modalContainer.classList.remove('hidden');
   modalContainer.querySelector('.thumbnail').classList.remove('hidden');
-  modalBox.classList.add('.modifySize');
+  modalBox.classList.add('modifySize');
 
   content.action = 'modify';
 
   const thumbnail = document.querySelector('.thumbnail');
-  const itemNumber = document.querySelector('content input[name=itemNumber]');
+  const itemNumberTag = document.querySelector('.content input[name=itemNumber]');
   const itemType = document.querySelector('.content input[name=itemtype]');
   const itemName = document.querySelector('.content input[name=itemName]');
   const value = document.querySelector('.content input[name=value]');
   const size = document.querySelector('.content input[name=size]');
   const color = document.querySelector('.content input[name=color]');
 
-  thumbnail.src = `${item.imgFilePath}/${item.filename}`;
+  thumbnail.src = `/${item.imgFilePath}/${item.filename}`;
+  itemNumberTag.value = item.itemNumber
   itemType.value = item.itemtype;
   itemName.value = item.itemname;
   value.value =item.value;
   size.value = item.size;
-  color.value = item.color;
+  color.value = item.colors;
 }
 
 async function prepareDelete(itemNumber) {;
@@ -116,43 +117,46 @@ async function prepareDelete(itemNumber) {;
       'Accept': 'application/json',
     }
   });
-  if(result === true) {
+  console.log('result',result, result.data)
+  if(result.data === true) {
     list(listBox.type, listBox.currentPageNo);
   }
 
 }
 
-subBut.addEventListener('click', function(event) {
-  const itemNumber = document.querySelector('content input[name=itemNumber]');
+subBut.addEventListener('click', async function(event) {
+  const thumbnail = document.querySelector(".thumbnail");
+  const itemNumber = document.querySelector('.content input[name=itemNumber]');
   const itemType = document.querySelector('.content input[name=itemtype]');
   const itemName = document.querySelector('.content input[name=itemName]');
-  const img = document.querySelector('content input[name=img]');
+  const img = document.querySelector('#uploadImg');
   const value = document.querySelector('.content input[name=value]');
   const size = document.querySelector('.content input[name=size]');
   const color = document.querySelector('.content input[name=color]');
 
   const formData = new FormData();
-  formData.append('itemNumber', itemNumber);
-  formData.append('itemtype',(itemType.value);
+  formData.append('itemNumber', itemNumber.value);
+  formData.append('itemtype',(itemType.value));
   formData.append('itemName',itemName.value);
-  formData.append('uploadImg',img.files[0]);
   formData.append('value',value.value);
   formData.append('size',size.value);
   formData.append('color',color.value);
+  formData.append('uploadImg',img.files[0]);
 
   const action = content.action;
   const result = await axios.post(`${action}`,formData, {
     headers: {
-      'Content-Type': 'multipart/form-data';
+      'Content-Type': 'multipart/form-data'
     }
   });
 
-  if(result === true) {
-    modalContainer.classList.add('.hidden');
-    const pageNo = action.contains('modify') && listBox.currentPageNo; 
+  if(result.data === true) {
+    modalContainer.classList.add('hidden');
+    const pageNo = action.includes('modify') && listBox.currentPageNo; 
     //아이템을 추가할 경우에는 현재 페이지가 다시보일 필요가 없이 해당 타입의 1페이지가 보이면 됨
+    //여기 질문!!
     modalContainer.querySelector('.thumbnail').classList.add('hidden');
-    content.classList.remove('.modifySize');
+    modalBox.classList.remove('modifySize');
 
     list(listBox.type, pageNo);
 
@@ -180,20 +184,22 @@ navbar.addEventListener('click', function(event) {
 });
 
 addBut.addEventListener('click',function(event){
+  console.log("addbutton")
   prepareAdd();
 });
 
 modalCloseBut.addEventListener('click',function() {
-  const itemNumber = document.querySelector('content input[name=itemNumber]');
+  const itemNumber = document.querySelector('.content input[name=itemNumber]');
   const itemType = document.querySelector('.content input[name=itemtype]');
   const itemName = document.querySelector('.content input[name=itemName]');
-  const img = document.querySelector('content input[name=img]');
+  const img = document.querySelector('.content input[name=img]');
   const value = document.querySelector('.content input[name=value]');
   const size = document.querySelector('.content input[name=size]');
   const color = document.querySelector('.content input[name=color]');
 
+  modalContainer.classList.add('hidden')
   modalContainer.querySelector('.thumbnail').classList.add('hidden');
-  content.classList.remove('.modifySize');
+  modalBox.classList.remove('modifySize');
 
   itemNumber.value = '';
   itemType.value = '';

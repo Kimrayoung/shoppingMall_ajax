@@ -26,7 +26,7 @@ connection.connect();
 const router = express.Router();
 
 //pagination //list middleware
-router.use('/',(req, res, next) => {
+router.use('/list',(req, res, next) => {
   const tag = 'middleware/item';
   console.log(tag, 'body', req.body);
   const type = req.query.type || 'all';
@@ -94,7 +94,7 @@ router.get('/list', (req, res) => {
     if (result) {
       if (accept === 'json') {
                 res.json({items: result, pagination, type});
-            } else if (accept === 'html') {
+            } else if (accept === 'html') {  //처음에 item/html로 들어가면 어떻게 accept가 html인지 알지,,?
                 res.render('item.html', {items: result, pagination, type});
             }
     }
@@ -136,9 +136,10 @@ router.post('/add', upload.single('uploadImg'), (req, res, next) => {
 router.post('/modify',upload.single('modifyimg'),(req, res, next) => {
     const tag = 'post/item/modify';
     console.log(tag);
-
+    console.log(req.body)
     const body = req.body;
     const file = req.file; 
+    console.log('file',file);
     const itemNumber = Number(body.itemNumber); 
     const itemtype = body.itemtype;
     const itemname = body.itemName;
@@ -156,7 +157,7 @@ router.post('/modify',upload.single('modifyimg'),(req, res, next) => {
       sql = `update item set itemname = '${itemname}', itemtype = '${itemtype}', value ='${value}', size = '${size}', colors = '${color}', filename ='${fileName}', originalFileName = '${imgOriginalName}', imgFilePath ='${path}' where itemNumber = ${itemNumber};`;
     }
 
-    connection.query((err, result, fields) => {
+    connection.query(sql,(err, result, fields) => {
       if (err) {
         console.log(tag, err.message);
       } else {
